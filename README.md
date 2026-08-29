@@ -1,8 +1,8 @@
 # Amazon Book Recommendation System: Combining Ratings & Review Emotions
 
-An NLP-based book ranking framework that combines numerical star ratings with emotions extracted from review text to produce more nuanced, less biased recommendations — benchmarking classical ML against a transformer to get there.
+An NLP-based book ranking framework that combines numerical star ratings with emotions extracted from review text to produce more nuanced, less biased recommendations, benchmarking classical ML against a transformer to get there.
 
-Built by Phan Thao Van and Nivetha Sudhakar.
+Built by Phan Thao Van.
 
 ## Key results
 
@@ -88,7 +88,3 @@ amazon-book-recommendation-nlp/
 ## Ethics & limitations
 
 Emotion labeling from text is inherently subjective, and flattening multi-label emotions into a single label for training simplifies real reader sentiment. The datasets used are publicly available and analyzed only in aggregate; the notebook includes a dedicated discussion of data ethics, privacy, and the limitations of the approach in its final sections.
-
----
-
-*Originally developed as a team project (NTU, SC3021 Fundamentals of Data Analytics and Computation); this repository restructures and presents the technical work independent of the coursework framing.*
