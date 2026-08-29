@@ -23,16 +23,16 @@ Built by Phan Thao Van.
 
 ## The problem
 
-Star ratings are noisy and skewed — in this dataset, roughly 61% of reviews are 5 stars, which flattens the signal sellers and platforms actually need. This project tests whether the emotional content of the review *text* — admiration, disapproval, disappointment — carries information the numeric score throws away, and whether blending the two produces a meaningfully different (and better) book ranking.
+Star ratings are noisy and skewed — in this dataset, roughly 61% of reviews are 5 stars, which flattens the signal sellers and platforms actually need. This project tests whether the emotional content of the review *text* (admiration, disapproval, disappointment) carries information the numeric score throws away, and whether blending the two produces a meaningfully different (and better) book ranking.
 
 ## Approach
 
-1. **Data sourcing** — evaluated 6 candidate datasets before settling on a combined review + metadata dataset; sampled 10,000 reviews from an original 3M-row Amazon Books Reviews dataset (fixed random seed for reproducibility).
-2. **Cleaning & feature engineering** — missing-value handling, minimum-review thresholds per book, text normalization, and a derived helpfulness-ratio feature (`src/preprocessing.py`).
-3. **Statistical analysis** — Mann-Whitney U tests and Pearson/Spearman correlation to establish, before any modeling, that review sentiment predicts helpfulness independently of star rating (`src/evaluation.py`).
-4. **Emotion classification** — four approaches benchmarked head-to-head on the same train/test split: TF-IDF + Logistic Regression/SVM/XGBoost vs. a fine-tuned DistilBERT transformer (`src/emotion_classifier.py`).
-5. **Recommendation-system design** — a composite score blending percentile-ranked star ratings (40%) and DistilBERT emotion scores (60%), aggregated to a per-book ranking (`src/ranking.py`).
-6. **Evaluation & sensitivity analysis** — Spearman rank correlation, mean absolute rank displacement, and tie-breaking rate to quantify how much the composite score actually changes the leaderboard versus star ratings alone; weighting choice (0.4/0.6) validated against alternative splits.
+1. **Data sourcing**: evaluated 6 candidate datasets before settling on a combined review + metadata dataset; sampled 10,000 reviews from an original 3M-row Amazon Books Reviews dataset (fixed random seed for reproducibility).
+2. **Cleaning & feature engineering**: missing-value handling, minimum-review thresholds per book, text normalization, and a derived helpfulness-ratio feature (`src/preprocessing.py`).
+3. **Statistical analysis**: Mann-Whitney U tests and Pearson/Spearman correlation to establish, before any modeling, that review sentiment predicts helpfulness independently of star rating (`src/evaluation.py`).
+4. **Emotion classification**: four approaches benchmarked head-to-head on the same train/test split: TF-IDF + Logistic Regression/SVM/XGBoost vs. a fine-tuned DistilBERT transformer (`src/emotion_classifier.py`).
+5. **Recommendation-system design**: a composite score blending percentile-ranked star ratings (40%) and DistilBERT emotion scores (60%), aggregated to a per-book ranking (`src/ranking.py`).
+6. **Evaluation & sensitivity analysis**: Spearman rank correlation, mean absolute rank displacement, and tie-breaking rate to quantify how much the composite score actually changes the leaderboard versus star ratings alone; weighting choice (0.4/0.6) validated against alternative splits.
 
 ## Results in detail
 
